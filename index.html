@@ -9,25 +9,32 @@
 </head>
 <body>
 
-    <header>
-        <h1>Cessna 414A Performance Calculator</h1>
-    </header>
+    <div class="app-container">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <h3>Cessna 414A</h3>
+                <p>Performance</p>
+            </div>
+            <nav class="module-nav">
+                <a href="#" class="nav-link active" data-tab="module1-tab">
+                    <svg viewBox="0 0 24 24"><path d="M12,2L2,7L12,12L22,7L12,2M12,14.47L5.33,10.47L2,12L12,17L22,12L18.67,10.47L12,14.47M12,19.94L5.33,15.94L2,17.47L12,22.47L22,17.47L18.67,15.94L12,19.94Z" /></svg>
+                    <span>Utilities & Corrections</span>
+                </a>
+                <a href="#" class="nav-link" data-tab="module2-tab">
+                     <svg viewBox="0 0 24 24"><path d="M22,22H2V20H22V22M22,19H2L12,4L22,19Z" /></svg>
+                    <span>Takeoff Performance</span>
+                </a>
+                <a href="#" class="nav-link disabled" data-tab="module3-tab">
+                     <svg viewBox="0 0 24 24"><path d="M13,20V14H18.5C18.5,14 21,14 21,11C21,8 18.5,8 18.5,8H13V2L3,11L13,20Z" /></svg>
+                    <span>Climb Performance</span>
+                </a>
+                 </nav>
+        </aside>
 
-    <div class="tabs-container">
-        <nav class="tabs-nav">
-            <button class="tab-button active" data-tab="module1-tab">1. Utilities & Corrections</button>
-            <button class="tab-button" data-tab="module2-tab">2. Takeoff Performance</button>
-            <button class="tab-button" data-tab="module3-tab" disabled>3. Climb Performance</button>
-            <button class="tab-button" data-tab="module4-tab" disabled>4. Cruise Performance</button>
-            <button class="tab-button" data-tab="module5-tab" disabled>5. Landing Performance</button>
-            <button class="tab-button" data-tab="module6-tab" disabled>6. Limits & Contingencies</button>
-            <button class="tab-button" data-tab="module7-tab" disabled>7. Full Flight Plan</button>
-        </nav>
-
-        <main class="tab-content">
+        <main class="content-area">
             <div id="module1-tab" class="tab-pane active">
                 <div class="module-grid">
-                    <section class="calculator-card" id="pressure-altitude-card">
+                     <section class="calculator-card" id="pressure-altitude-card">
                         <h3>Pressure Altitude</h3>
                         <div class="input-group"><label for="m1-fieldelevation">Field Elevation (feet)</label><input type="number" id="m1-fieldelevation" placeholder="e.g., 5000"></div>
                         <div class="input-group"><label for="m1-altsetting">Altimeter Setting (inHg)</label><input type="number" id="m1-altsetting" step="0.01" placeholder="e.g., 29.42"></div>
@@ -77,13 +84,13 @@
             </div>
 
             <div id="module2-tab" class="tab-pane">
-                <div class="module-grid">
+                 <div class="module-grid">
                     <section class="calculator-card" id="normal-takeoff-card">
                         <h3>Normal Takeoff Distance</h3>
-                        <div class="input-group"><label for="m2-normal-weight">Weight (lbs)</label><input type="number" id="m2-normal-weight" value="6500"></div>
-                        <div class="input-group"><label for="m2-normal-pa">Pressure Altitude (ft)</label><input type="number" id="m2-normal-pa" value="2400"></div>
-                        <div class="input-group"><label for="m2-normal-temp">OAT (°C)</label><input type="number" id="m2-normal-temp" value="16"></div>
-                        <div class="input-group"><label for="m2-normal-wind">Headwind (kts)</label><input type="number" id="m2-normal-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <div class="input-group"><label for="m2-normal-weight">Weight (lbs)</label><input type="number" id="m2-normal-weight" placeholder="e.g., 6500"></div>
+                        <div class="input-group"><label for="m2-normal-pa">Pressure Altitude (ft)</label><input type="number" id="m2-normal-pa" placeholder="e.g., 2400"></div>
+                        <div class="input-group"><label for="m2-normal-temp">OAT (°C)</label><input type="number" id="m2-normal-temp" placeholder="e.g., 16"></div>
+                        <div class="input-group"><label for="m2-normal-wind">Headwind (kts)</label><input type="number" id="m2-normal-wind" placeholder="Use negative for tailwind"></div>
                         <button data-calc="normal-takeoff">Calculate</button>
                         <p class="result">Ground Roll: <span id="normal-takeoff-ground-roll-result">---</span> feet</p>
                         <p class="result">Distance to Clear 50-ft: <span id="normal-takeoff-50ft-result">---</span> feet</p>
@@ -91,38 +98,30 @@
 
                     <section class="calculator-card" id="accel-stop-card">
                         <h3>Accelerate-Stop Distance</h3>
-                         <div class="input-group"><label for="m2-accelstop-weight">Weight (lbs)</label><input type="number" id="m2-accelstop-weight" value="6500"></div>
-                        <div class="input-group"><label for="m2-accelstop-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelstop-pa" value="2400"></div>
-                        <div class="input-group"><label for="m2-accelstop-temp">OAT (°C)</label><input type="number" id="m2-accelstop-temp" value="16"></div>
-                        <div class="input-group"><label for="m2-accelstop-wind">Headwind (kts)</label><input type="number" id="m2-accelstop-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <div class="input-group"><label for="m2-accelstop-weight">Weight (lbs)</label><input type="number" id="m2-accelstop-weight" placeholder="e.g., 6500"></div>
+                        <div class="input-group"><label for="m2-accelstop-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelstop-pa" placeholder="e.g., 2400"></div>
+                        <div class="input-group"><label for="m2-accelstop-temp">OAT (°C)</label><input type="number" id="m2-accelstop-temp" placeholder="e.g., 16"></div>
+                        <div class="input-group"><label for="m2-accelstop-wind">Headwind (kts)</label><input type="number" id="m2-accelstop-wind" placeholder="Use negative for tailwind"></div>
                         <button data-calc="accel-stop">Calculate</button>
                         <p class="result">Total Distance: <span id="accel-stop-result">---</span> feet</p>
                     </section>
 
                     <section class="calculator-card" id="accel-go-card">
                         <h3>Accelerate-Go Distance</h3>
-                        <div class="input-group"><label for="m2-accelgo-weight">Weight (lbs)</label><input type="number" id="m2-accelgo-weight" value="6500"></div>
-                        <div class="input-group"><label for="m2-accelgo-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelgo-pa" value="2400"></div>
-                        <div class="input-group"><label for="m2-accelgo-temp">OAT (°C)</label><input type="number" id="m2-accelgo-temp" value="16"></div>
-                        <div class="input-group"><label for="m2-accelgo-wind">Headwind (kts)</label><input type="number" id="m2-accelgo-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <div class="input-group"><label for="m2-accelgo-weight">Weight (lbs)</label><input type="number" id="m2-accelgo-weight" placeholder="e.g., 6500"></div>
+                        <div class="input-group"><label for="m2-accelgo-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelgo-pa" placeholder="e.g., 2400"></div>
+                        <div class="input-group"><label for="m2-accelgo-temp">OAT (°C)</label><input type="number" id="m2-accelgo-temp" placeholder="e.g., 16"></div>
+                        <div class="input-group"><label for="m2-accelgo-wind">Headwind (kts)</label><input type="number" id="m2-accelgo-wind" placeholder="Use negative for tailwind"></div>
                         <button data-calc="accel-go">Calculate</button>
                         <p class="result">Total Distance to Clear 50-ft: <span id="accel-go-result">---</span> feet</p>
                         <p class="result warning"><span id="accel-go-warning"></span></p>
                     </section>
                 </div>
             </div>
-            
-            <div id="module3-tab" class="tab-pane"><p>Módulo 3: Performance de Subida (Em desenvolvimento)</p></div>
-            <div id="module4-tab" class="tab-pane"><p>Módulo 4: Performance de Cruzeiro (Em desenvolvimento)</p></div>
-            <div id="module5-tab" class="tab-pane"><p>Módulo 5: Performance de Pouso (Em desenvolvimento)</p></div>
-            <div id="module6-tab" class="tab-pane"><p>Módulo 6: Limites e Contingências (Em desenvolvimento)</p></div>
-            <div id="module7-tab" class="tab-pane"><p>Módulo 7: Planejamento de Voo Completo (Em desenvolvimento)</p></div>
+
+            <div id="module3-tab" class="tab-pane"><h2 class="placeholder-title">Module 3: Climb Performance (Under Development)</h2></div>
         </main>
     </div>
-
-    <footer>
-        <p>Cessna 414A Performance Calculator | Projeto de Alan e Gemini</p>
-    </footer>
 
 </body>
 </html>
