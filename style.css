@@ -1,4 +1,4 @@
-/* Reset Básico e Definições Globais (Do Módulo 1) */
+/* Reset Básico e Definições Globais */
 :root {
     --primary-color: #0d47a1; 
     --secondary-color: #f4f4f9; 
@@ -18,57 +18,82 @@ body {
     line-height: 1.6;
 }
 
-header, footer {
+header {
     background-color: var(--primary-color);
     color: white;
     text-align: center;
     padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 header h1 { margin: 0; font-size: 2rem; }
-header h2 { margin: 0; font-weight: 300; font-size: 1.2rem; opacity: 0.9; }
-footer { margin-top: 2rem; font-size: 0.9rem; }
 
-/* Layout Principal */
-main {
-    padding: 1.5rem;
-    max-width: 1400px;
+footer { 
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Sistema de Abas */
+.tabs-container {
+    max-width: 1600px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* NOVO: Card de Condições */
-.conditions-card {
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 2rem;
-}
-
-.conditions-card h3 {
-    margin-top: 0;
+.tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--border-color);
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+}
+
+.tab-button {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-button:hover {
+    background-color: #eef;
     color: var(--primary-color);
 }
 
-.conditions-grid {
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-button:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Grid para os Módulos */
+.module-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 1.5rem;
 }
 
-/* NOVO: Container dos Módulos */
-.module-container {
-     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-}
-
-
-/* Estilo dos Cards da Calculadora */
+/* Card da Calculadora */
 .calculator-card {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
@@ -81,19 +106,14 @@ main {
 
 .calculator-card h3 {
     margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-.calculator-card .description {
-    font-size: 0.9rem;
-    color: #666;
     margin-bottom: 1.5rem;
-    flex-grow: 1;
+    color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 /* Grupo de Inputs */
 .input-group {
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -113,8 +133,8 @@ main {
     box-sizing: border-box; 
 }
 
-/* Botões */
-button {
+/* Botões de Calcular */
+.calculator-card button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -124,27 +144,34 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    margin-top: auto; /* Alinha o botão no final do card */
 }
 
-button:hover {
+.calculator-card button:hover {
     background-color: #1565c0;
 }
 
 /* Resultados */
 .result {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 0;
     font-weight: 500;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid #eee;
     padding-top: 1rem;
+}
+
+.result:first-of-type {
+     margin-top: 1.5rem;
 }
 
 .result span {
     font-weight: 700;
     color: var(--result-color);
+    float: right;
 }
 
 .result.warning span {
     color: var(--warning-color);
     font-weight: 600;
+    float: none;
 }
