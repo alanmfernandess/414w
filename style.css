@@ -1,109 +1,124 @@
-/* Reset Básico e Definições Globais */
+/* Definições Globais e Tema Escuro */
 :root {
-    --primary-color: #0d47a1; 
-    --secondary-color: #f4f4f9; 
-    --font-color: #333; 
-    --border-color: #ddd;
-    --card-bg-color: #fff;
-    --result-color: #0d47a1;
-    --warning-color: #c62828;
+    --bg-color: #1e1e24;
+    --surface-color: #2a2a32;
+    --primary-color: #00bcd4; /* Cyan */
+    --font-color: #e0e0e0;
+    --font-color-muted: #888;
+    --border-color: #444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    margin: 0;
-    padding: 0;
-    background-color: var(--secondary-color);
+    font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
     color: var(--font-color);
     line-height: 1.6;
 }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-header h1 { margin: 0; font-size: 2rem; }
-
-footer { 
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #777;
-}
-
-/* Sistema de Abas */
-.tabs-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.tabs-nav {
+/* Layout Principal da Aplicação */
+.app-container {
     display: flex;
-    flex-wrap: wrap;
-    border-bottom: 2px solid var(--border-color);
-    margin-bottom: 1.5rem;
+    min-height: 100vh;
 }
 
-.tab-button {
+/* Barra de Navegação Lateral (Sidebar) */
+.sidebar-nav {
+    width: 260px;
+    background-color: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar-header h3 { font-size: 1.8rem; color: #fff; }
+.sidebar-header p { color: var(--primary-color); font-weight: 600; margin-top: -5px; }
+
+.module-nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
     padding: 1rem 1.5rem;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    border-bottom: 3px solid transparent;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #555;
+    color: var(--font-color-muted);
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 4px solid transparent;
     transition: all 0.2s ease-in-out;
 }
-
-.tab-button:hover {
-    background-color: #eef;
-    color: var(--primary-color);
+.nav-link svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    fill: currentColor;
 }
-
-.tab-button.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-}
-
-.tab-button:disabled {
-    color: #aaa;
+.nav-link.disabled {
+    color: #555;
     cursor: not-allowed;
-    background-color: transparent;
+    opacity: 0.6;
+}
+.nav-link:not(.disabled):hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: rgba(0, 188, 212, 0.1);
+    border-left-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Área de Conteúdo Principal */
+.content-area {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
 }
 
 .tab-pane {
     display: none;
 }
-
 .tab-pane.active {
     display: block;
 }
 
-/* Grid para os Módulos */
+/* Grid para os Cards */
 .module-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
+    justify-content: center;
 }
 
 /* Card da Calculadora */
 .calculator-card {
-    background-color: var(--card-bg-color);
+    background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.calculator-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
 .calculator-card h3 {
     margin-top: 0;
     margin-bottom: 1.5rem;
@@ -114,64 +129,99 @@ footer {
 /* Grupo de Inputs */
 .input-group {
     margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
 }
-
 .input-group label {
+    display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
     font-size: 0.9rem;
+    color: var(--font-color-muted);
 }
-
 .input-group input, .input-group select {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--font-color);
     border-radius: 4px;
     font-size: 1rem;
-    box-sizing: border-box; 
+}
+.input-group input::placeholder {
+    color: #555;
 }
 
-/* Botões de Calcular */
+/* Botões e Resultados */
 .calculator-card button {
     background-color: var(--primary-color);
-    color: white;
+    color: #111;
     border: none;
     padding: 0.9rem 1.5rem;
     border-radius: 4px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    margin-top: auto; /* Alinha o botão no final do card */
+    margin-top: auto;
 }
-
 .calculator-card button:hover {
-    background-color: #1565c0;
+    background-color: #4dd0e1; /* Cyan mais claro */
 }
-
-/* Resultados */
 .result {
     margin-top: 1rem;
-    margin-bottom: 0;
-    font-weight: 500;
-    border-top: 1px solid #eee;
     padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
 }
-
-.result:first-of-type {
-     margin-top: 1.5rem;
-}
-
+.result:first-of-type { margin-top: 1.5rem; }
 .result span {
     font-weight: 700;
-    color: var(--result-color);
-    float: right;
+    color: var(--primary-color);
+}
+.result.warning span {
+    color: #ef5350; /* Vermelho claro */
+    font-weight: 600;
 }
 
-.result.warning span {
-    color: var(--warning-color);
-    font-weight: 600;
-    float: none;
+/* Placeholder para Módulos Futuros */
+.placeholder-title {
+    color: var(--font-color-muted);
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 5rem;
+}
+
+/* Design Responsivo */
+@media (max-width: 900px) {
+    .app-container {
+        flex-direction: column;
+    }
+    .sidebar-nav {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0;
+    }
+    .sidebar-header { display: none; }
+    .module-nav {
+        flex-direction: row;
+        margin-top: 0;
+        width: 100%;
+    }
+    .nav-link {
+        border-left: none;
+        border-bottom: 4px solid transparent;
+        justify-content: center;
+    }
+    .nav-link span { display: none; } /* Opcional: esconde texto em telas pequenas */
+    .content-area { padding: 1.5rem; }
+}
+
+@media (max-width: 500px) {
+    .nav-link span { display: inline; } /* Mostra o texto de volta se a barra quebrar */
+    .module-grid { grid-template-columns: 1fr; }
 }
