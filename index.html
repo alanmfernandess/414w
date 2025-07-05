@@ -10,124 +10,115 @@
 <body>
 
     <header>
-        <h1>Calculadora de Performance - Cessna 414A</h1>
-        <h2>Cálculos de Performance e Utilitários</h2>
+        <h1>Cessna 414A Performance Calculator</h1>
     </header>
 
-    <main>
-        <section class="conditions-card">
-            <h3>Flight Conditions</h3>
-            <div class="conditions-grid">
-                <div class="input-column">
-                    <h4>Aircraft</h4>
-                    <div class="input-group">
-                        <label for="aircraft-weight">Aircraft Weight (pounds)</label>
-                        <input type="number" id="aircraft-weight" value="6500">
-                    </div>
-                    <div class="input-group">
-                        <label for="config">Configuration</label>
-                        <select id="config">
-                            <option value="clean" selected>Gear Up / Flaps 0°</option>
-                            <option value="approach">Gear Down / Flaps 15°</option>
-                            <option value="landing">Gear Down / Flaps 45°</option>
-                        </select>
-                    </div>
-                     <div class="input-group">
-                        <label for="static-source">Static Source</label>
-                        <select id="static-source">
-                            <option value="normal" selected>Normal</option>
-                            <option value="alternate">Alternate</option>
-                        </select>
-                    </div>
-                </div>
+    <div class="tabs-container">
+        <nav class="tabs-nav">
+            <button class="tab-button active" data-tab="module1-tab">1. Utilities & Corrections</button>
+            <button class="tab-button" data-tab="module2-tab">2. Takeoff Performance</button>
+            <button class="tab-button" data-tab="module3-tab" disabled>3. Climb Performance</button>
+            <button class="tab-button" data-tab="module4-tab" disabled>4. Cruise Performance</button>
+            <button class="tab-button" data-tab="module5-tab" disabled>5. Landing Performance</button>
+            <button class="tab-button" data-tab="module6-tab" disabled>6. Limits & Contingencies</button>
+            <button class="tab-button" data-tab="module7-tab" disabled>7. Full Flight Plan</button>
+        </nav>
 
-                <div class="input-column">
-                    <h4>Atmosphere</h4>
-                    <div class="input-group">
-                        <label for="oat">Indicated OAT (°C)</label>
-                        <input type="number" id="oat" value="16">
-                    </div>
-                    <div class="input-group">
-                        <label for="field-elevation">Field Elevation (feet)</label>
-                        <input type="number" id="field-elevation" value="2400">
-                    </div>
-                    <div class="input-group">
-                        <label for="altimeter-setting">Altimeter Setting (inHg)</label>
-                        <input type="number" id="altimeter-setting" step="0.01" value="29.92">
-                    </div>
-                </div>
+        <main class="tab-content">
+            <div id="module1-tab" class="tab-pane active">
+                <div class="module-grid">
+                    <section class="calculator-card" id="pressure-altitude-card">
+                        <h3>Pressure Altitude</h3>
+                        <div class="input-group"><label for="m1-fieldelevation">Field Elevation (feet)</label><input type="number" id="m1-fieldelevation" placeholder="e.g., 5000"></div>
+                        <div class="input-group"><label for="m1-altsetting">Altimeter Setting (inHg)</label><input type="number" id="m1-altsetting" step="0.01" placeholder="e.g., 29.42"></div>
+                        <button data-calc="pressure-altitude">Calculate</button>
+                        <p class="result">Pressure Altitude: <span id="pressure-altitude-result">---</span> feet</p>
+                    </section>
+                    
+                    <section class="calculator-card" id="airspeed-cal-card">
+                        <h3>Airspeed Calibration</h3>
+                        <div class="input-group"><label for="m1-kias-cal">Indicated Airspeed (KIAS)</label><input type="number" id="m1-kias-cal" placeholder="e.g., 150"></div>
+                        <div class="input-group"><label for="m1-config-cal">Configuration</label><select id="m1-config-cal"><option value="clean">Gear Up / Flaps 0°</option><option value="approach">Gear Down / Flaps 15°</option><option value="landing">Gear Down / Flaps 45°</option></select></div>
+                        <div class="input-group"><label for="m1-staticsource-cal">Static Source</label><select id="m1-staticsource-cal"><option value="normal">Normal</option><option value="alternate">Alternate</option></select></div>
+                        <button data-calc="airspeed-cal">Calculate</button>
+                        <p class="result">Calibrated Airspeed: <span id="airspeed-cal-result">---</span> KCAS</p>
+                    </section>
 
-                <div class="input-column">
-                    <h4>Wind & Runway</h4>
-                    <div class="input-group">
-                        <label for="runway-hdg">Runway Heading (degrees)</label>
-                        <input type="number" id="runway-hdg" value="230">
-                    </div>
-                    <div class="input-group">
-                        <label for="wind-dir">Wind Direction (degrees)</label>
-                        <input type="number" id="wind-dir" value="270">
-                    </div>
-                    <div class="input-group">
-                        <label for="wind-speed">Wind Speed (knots)</label>
-                        <input type="number" id="wind-speed" value="19">
-                    </div>
-                </div>
+                    <section class="calculator-card" id="altimeter-corr-card">
+                        <h3>Altimeter Correction</h3>
+                        <div class="input-group"><label for="m1-kias-alt">Indicated Airspeed (KIAS)</label><input type="number" id="m1-kias-alt" placeholder="e.g., 200"></div>
+                        <div class="input-group"><label for="m1-pa-alt">Pressure Altitude (feet)</label><input type="number" id="m1-pa-alt" placeholder="e.g., 10000"></div>
+                        <div class="input-group"><label for="m1-config-alt">Configuration</label><select id="m1-config-alt"><option value="clean">Gear Up / Flaps 0°</option><option value="approach">Gear Down / Flaps 15°</option><option value="landing">Gear Down / Flaps 45°</option></select></div>
+                        <div class="input-group"><label for="m1-staticsource-alt">Static Source</label><select id="m1-staticsource-alt"><option value="normal">Normal</option><option value="alternate">Alternate</option></select></div>
+                        <button data-calc="altimeter-corr">Calculate</button>
+                        <p class="result">Altimeter Correction: <span id="altimeter-corr-result">---</span> feet</p>
+                    </section>
 
-                 <div class="input-column">
-                    <h4>Airspeed</h4>
-                    <div class="input-group">
-                        <label for="kias">Indicated Airspeed (KIAS)</label>
-                        <input type="number" id="kias" value="150">
-                    </div>
+                    <section class="calculator-card" id="ram-rise-card">
+                        <h3>Temperature Correction (Ram Rise)</h3>
+                        <div class="input-group"><label for="m1-kias-temp">Indicated Airspeed (KIAS)</label><input type="number" id="m1-kias-temp" placeholder="e.g., 160"></div>
+                        <div class="input-group"><label for="m1-pa-temp">Pressure Altitude (feet)</label><input type="number" id="m1-pa-temp" placeholder="e.g., 20000"></div>
+                        <div class="input-group"><label for="m1-indicated-oat">Indicated OAT (°C)</label><input type="number" id="m1-indicated-oat" placeholder="e.g., -20"></div>
+                        <button data-calc="ram-rise">Calculate</button>
+                        <p class="result">Temperature Rise: <span id="ram-rise-result">---</span> °C</p>
+                        <p class="result">True OAT: <span id="true-oat-result">---</span> °C</p>
+                    </section>
+
+                    <section class="calculator-card" id="wind-comp-card">
+                        <h3>Wind Components</h3>
+                        <div class="input-group"><label for="m1-runway-hdg">Runway Heading (deg)</label><input type="number" id="m1-runway-hdg" placeholder="e.g., 230"></div>
+                        <div class="input-group"><label for="m1-wind-dir">Wind Direction (deg)</label><input type="number" id="m1-wind-dir" placeholder="e.g., 270"></div>
+                        <div class="input-group"><label for="m1-wind-speed">Wind Speed (knots)</label><input type="number" id="m1-wind-speed" placeholder="e.g., 25"></div>
+                        <button data-calc="wind-comp">Calculate</button>
+                        <p class="result">Headwind/Tailwind: <span id="headwind-result">---</span> knots</p>
+                        <p class="result">Crosswind: <span id="crosswind-result">---</span> knots</p>
+                    </section>
                 </div>
             </div>
-        </section>
 
-        <div class="module-wrapper">
-            <h3 class="module-title">Módulo 2: Takeoff Performance</h3>
-            <div class="module-container">
-                <section class="calculator-card">
-                    <h4>Normal Takeoff Distance</h4>
-                    <p class="description">Calculates the distance for a normal takeoff based on the Flight Conditions above.</p>
-                    <button data-calc="normal-takeoff">Calculate</button>
-                    <p class="result">Ground Roll: <span id="normal-takeoff-ground-roll-result">---</span> feet</p>
-                    <p class="result">Distance to Clear 50-ft: <span id="normal-takeoff-50ft-result">---</span> feet</p>
-                </section>
+            <div id="module2-tab" class="tab-pane">
+                <div class="module-grid">
+                    <section class="calculator-card" id="normal-takeoff-card">
+                        <h3>Normal Takeoff Distance</h3>
+                        <div class="input-group"><label for="m2-normal-weight">Weight (lbs)</label><input type="number" id="m2-normal-weight" value="6500"></div>
+                        <div class="input-group"><label for="m2-normal-pa">Pressure Altitude (ft)</label><input type="number" id="m2-normal-pa" value="2400"></div>
+                        <div class="input-group"><label for="m2-normal-temp">OAT (°C)</label><input type="number" id="m2-normal-temp" value="16"></div>
+                        <div class="input-group"><label for="m2-normal-wind">Headwind (kts)</label><input type="number" id="m2-normal-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <button data-calc="normal-takeoff">Calculate</button>
+                        <p class="result">Ground Roll: <span id="normal-takeoff-ground-roll-result">---</span> feet</p>
+                        <p class="result">Distance to Clear 50-ft: <span id="normal-takeoff-50ft-result">---</span> feet</p>
+                    </section>
 
-                <section class="calculator-card">
-                    <h4>Accelerate-Stop Distance</h4>
-                    <p class="description">Calculates the distance required to accelerate to engine failure speed and bring the aircraft to a full stop.</p>
-                    <button data-calc="accel-stop">Calculate</button>
-                    <p class="result">Total Distance: <span id="accel-stop-result">---</span> feet</p>
-                </section>
+                    <section class="calculator-card" id="accel-stop-card">
+                        <h3>Accelerate-Stop Distance</h3>
+                         <div class="input-group"><label for="m2-accelstop-weight">Weight (lbs)</label><input type="number" id="m2-accelstop-weight" value="6500"></div>
+                        <div class="input-group"><label for="m2-accelstop-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelstop-pa" value="2400"></div>
+                        <div class="input-group"><label for="m2-accelstop-temp">OAT (°C)</label><input type="number" id="m2-accelstop-temp" value="16"></div>
+                        <div class="input-group"><label for="m2-accelstop-wind">Headwind (kts)</label><input type="number" id="m2-accelstop-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <button data-calc="accel-stop">Calculate</button>
+                        <p class="result">Total Distance: <span id="accel-stop-result">---</span> feet</p>
+                    </section>
 
-                <section class="calculator-card">
-                    <h4>Accelerate-Go Distance</h4>
-                    <p class="description">Calculates the distance required to continue the takeoff and clear a 50-ft obstacle after an engine failure.</p>
-                    <button data-calc="accel-go">Calculate</button>
-                    <p class="result">Total Distance to Clear 50-ft: <span id="accel-go-result">---</span> feet</p>
-                    <p class="result warning"><span id="accel-go-warning"></span></p>
-                </section>
+                    <section class="calculator-card" id="accel-go-card">
+                        <h3>Accelerate-Go Distance</h3>
+                        <div class="input-group"><label for="m2-accelgo-weight">Weight (lbs)</label><input type="number" id="m2-accelgo-weight" value="6500"></div>
+                        <div class="input-group"><label for="m2-accelgo-pa">Pressure Altitude (ft)</label><input type="number" id="m2-accelgo-pa" value="2400"></div>
+                        <div class="input-group"><label for="m2-accelgo-temp">OAT (°C)</label><input type="number" id="m2-accelgo-temp" value="16"></div>
+                        <div class="input-group"><label for="m2-accelgo-wind">Headwind (kts)</label><input type="number" id="m2-accelgo-wind" placeholder="Use negative for tailwind" value="19"></div>
+                        <button data-calc="accel-go">Calculate</button>
+                        <p class="result">Total Distance to Clear 50-ft: <span id="accel-go-result">---</span> feet</p>
+                        <p class="result warning"><span id="accel-go-warning"></span></p>
+                    </section>
+                </div>
             </div>
-        </div>
-        
-        <div class="module-wrapper">
-             <h3 class="module-title">Módulo 1: Utilities & Corrections</h3>
-             <div class="module-container">
-                <section class="calculator-card">
-                    <h4>Core Calculations</h4>
-                    <p class="description">Calculates foundational values based on the Flight Conditions. These are used internally by other modules.</p>
-                    <button data-calc="utilities">Calculate</button>
-                    <p class="result">Pressure Altitude: <span id="pressure-altitude-result">---</span> feet</p>
-                    <p class="result">KCAS from KIAS: <span id="airspeed-cal-result">---</span> KCAS</p>
-                    <p class="result">Altimeter Correction: <span id="altimeter-corr-result">---</span> feet</p>
-                    <p class="result">True OAT: <span id="true-oat-result">---</span> °C</p>
-                    <p class="result">Headwind: <span id="headwind-result">---</span> knots</p>
-                    <p class="result">Crosswind: <span id="crosswind-result">---</span> knots</p>
-                </section>
-             </div>
-        </div>
-    </main>
+            
+            <div id="module3-tab" class="tab-pane"><p>Módulo 3: Performance de Subida (Em desenvolvimento)</p></div>
+            <div id="module4-tab" class="tab-pane"><p>Módulo 4: Performance de Cruzeiro (Em desenvolvimento)</p></div>
+            <div id="module5-tab" class="tab-pane"><p>Módulo 5: Performance de Pouso (Em desenvolvimento)</p></div>
+            <div id="module6-tab" class="tab-pane"><p>Módulo 6: Limites e Contingências (Em desenvolvimento)</p></div>
+            <div id="module7-tab" class="tab-pane"><p>Módulo 7: Planejamento de Voo Completo (Em desenvolvimento)</p></div>
+        </main>
+    </div>
 
     <footer>
         <p>Cessna 414A Performance Calculator | Projeto de Alan e Gemini</p>
