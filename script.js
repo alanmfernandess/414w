@@ -1,10 +1,9 @@
 // =================================================================================
-// CESSNA 414A PERFORMANCE CALCULATOR - MODULES 1 & 2 (TRULY COMPLETE)
-// Project: Alan Fernandes
+// CESSNA 414A PERFORMANCE CALCULATOR - REFINED UI - COMPLETE JS
+// Project: Alan and Gemini
 //
-// This file contains the complete and final code for Modules 1 and 2.
-// It includes the FULL database from all provided charts and fully functional
-// 1D, 2D, and 3D interpolation algorithms.
+// This file is 100% complete as requested, containing the full database for
+// Modules 1 and 2, and fully functional interpolation algorithms.
 // =================================================================================
 
 const C414ACalculator = {
@@ -12,7 +11,6 @@ const C414ACalculator = {
     // 1. DATABASE (COMPLETE FOR MODULES 1 & 2)
     // =============================================================================
     data: {
-        // Module 1 Data
         airspeedCalibration: {
             normal: {
                 clean:    [{kias:70,kcas:70},{kias:80,kcas:80},{kias:90,kcas:90},{kias:100,kcas:100},{kias:110,kcas:110},{kias:120,kcas:119},{kias:140,kcas:139},{kias:160,kcas:158},{kias:180,kcas:178},{kias:200,kcas:197},{kias:220,kcas:216},{kias:230,kcas:226},{kias:237,kcas:232}],
@@ -70,8 +68,6 @@ const C414ACalculator = {
             { pa: 25000, points: [{kias: 80, rise: 2}, {kias: 120, rise: 4.5}, {kias: 160, rise: 8}, {kias: 200, rise: 12}, {kias: 220, rise: 14.5}] },
             { pa: 30000, points: [{kias: 80, rise: 2.5}, {kias: 120, rise: 5}, {kias: 160, rise: 9}, {kias: 200, rise: 13.5}, {kias: 220, rise: 16}] }
         ],
-
-        // Module 2 Data - COMPLETE
         normalTakeoff: [
             { weight: 6750, altitudes: [
                 { pa: 0, temps: [{t:-20,gr:1560,d50:1870},{t:-10,gr:1710,d50:2010},{t:0,gr:1870,d50:2230},{t:10,gr:2040,d50:2430},{t:20,gr:2290,d50:2720},{t:30,gr:2510,d50:2980},{t:40,gr:2750,d50:3270}]},
@@ -208,30 +204,30 @@ const C414ACalculator = {
                 { pa: 10000,temps: [{t:-20,d:3840,m:false},{t:-10,d:4280,m:false},{t:0,d:4840,m:true},{t:10,d:5500,m:true},{t:20,d:6410,m:true},{t:30,d:7300,m:true},{t:40,d:9250,m:true}]}
             ]},
             { weight: 5700, altitudes: [
-                { pa: 0, temps: [{t:-20,d:1770,d:1930,m:false},{t:0,d:2110,m:false},{t:10,d:2320,m:false},{t:20,d:2560,m:false},{t:30,d:2840,m:false},{t:40,d:3170,m:false}]},
-                { pa: 1000, temps: [{t:-20,d:1850,d:2020,m:false},{t:0,d:2210,m:false},{t:10,d:2440,m:false},{t:20,d:2690,m:false},{t:30,d:2970,m:false},{t:40,d:3310,m:false}]},
-                { pa: 2000, temps: [{t:-20,d:1950,d:2120,m:false},{t:0,d:2320,m:false},{t:10,d:2560,m:false},{t:20,d:2820,m:false},{t:30,d:3110,m:false},{t:40,d:3460,m:false}]},
-                { pa: 3000, temps: [{t:-20,d:2050,d:2240,m:false},{t:0,d:2440,m:false},{t:10,d:2700,m:false},{t:20,d:2960,m:false},{t:30,d:3270,m:false},{t:40,d:3630,m:false}]},
-                { pa: 4000, temps: [{t:-20,d:2150,d:2350,m:false},{t:0,d:2580,m:false},{t:10,d:2850,m:false},{t:20,d:3120,m:false},{t:30,d:3440,m:false},{t:40,d:3860,m:false}]},
-                { pa: 5000, temps: [{t:-20,d:2290,d:2510,m:false},{t:0,d:2720,m:false},{t:10,d:3000,m:false},{t:20,d:3280,m:false},{t:30,d:3630,m:false},{t:40,d:4060,m:false}]},
-                { pa: 6000, temps: [{t:-20,d:2420,d:2650,m:false},{t:0,d:2880,m:false},{t:10,d:3180,m:false},{t:20,d:3480,m:false},{t:30,d:3860,m:false},{t:40,d:4300,m:false}]},
-                { pa: 7000, temps: [{t:-20,d:2580,d:2840,m:false},{t:0,d:3060,m:false},{t:10,d:3380,m:false},{t:20,d:3710,m:false},{t:30,d:4100,m:false},{t:40,d:4560,m:false}]},
-                { pa: 8000, temps: [{t:-20,d:2730,d:3010,m:false},{t:0,d:3250,m:false},{t:10,d:3590,m:false},{t:20,d:3960,m:false},{t:30,d:4400,m:false},{t:40,d:4850,m:false}]},
-                { pa: 9000, temps: [{t:-20,d:2900,d:3200,m:false},{t:0,d:3450,m:false},{t:10,d:3830,m:false},{t:20,d:4220,m:false},{t:30,d:4670,m:false},{t:40,d:5180,m:false}]},
-                { pa: 10000,temps: [{t:-20,d:3090,d:3390,m:false},{t:0,d:3710,m:false},{t:10,d:4100,m:false},{t:20,d:4520,m:false},{t:30,d:5000,m:false},{t:40,d:5480,m:false}]}
+                { pa: 0, temps: [{t:-20,d:1770,m:false},{t:-10,d:1930,m:false},{t:0,d:2110,m:false},{t:10,d:2320,m:false},{t:20,d:2560,m:false},{t:30,d:2840,m:false},{t:40,d:3170,m:false}]},
+                { pa: 1000, temps: [{t:-20,d:1850,m:false},{t:-10,d:2020,m:false},{t:0,d:2210,m:false},{t:10,d:2440,m:false},{t:20,d:2690,m:false},{t:30,d:2970,m:false},{t:40,d:3310,m:false}]},
+                { pa: 2000, temps: [{t:-20,d:1950,m:false},{t:-10,d:2120,m:false},{t:0,d:2320,m:false},{t:10,d:2560,m:false},{t:20,d:2820,m:false},{t:30,d:3110,m:false},{t:40,d:3460,m:false}]},
+                { pa: 3000, temps: [{t:-20,d:2050,m:false},{t:-10,d:2240,m:false},{t:0,d:2440,m:false},{t:10,d:2700,m:false},{t:20,d:2960,m:false},{t:30,d:3270,m:false},{t:40,d:3630,m:false}]},
+                { pa: 4000, temps: [{t:-20,d:2150,m:false},{t:-10,d:2350,m:false},{t:0,d:2580,m:false},{t:10,d:2850,m:false},{t:20,d:3120,m:false},{t:30,d:3440,m:false},{t:40,d:3860,m:false}]},
+                { pa: 5000, temps: [{t:-20,d:2290,m:false},{t:-10,d:2510,m:false},{t:0,d:2720,m:false},{t:10,d:3000,m:false},{t:20,d:3280,m:false},{t:30,d:3630,m:false},{t:40,d:4060,m:false}]},
+                { pa: 6000, temps: [{t:-20,d:2420,m:false},{t:-10,d:2650,m:false},{t:0,d:2880,m:false},{t:10,d:3180,m:false},{t:20,d:3480,m:false},{t:30,d:3860,m:false},{t:40,d:4300,m:false}]},
+                { pa: 7000, temps: [{t:-20,d:2580,m:false},{t:-10,d:2840,m:false},{t:0,d:3060,m:false},{t:10,d:3380,m:false},{t:20,d:3710,m:false},{t:30,d:4100,m:false},{t:40,d:4560,m:false}]},
+                { pa: 8000, temps: [{t:-20,d:2730,m:false},{t:-10,d:3010,m:false},{t:0,d:3250,m:false},{t:10,d:3590,m:false},{t:20,d:3960,m:false},{t:30,d:4400,m:false},{t:40,d:4850,m:false}]},
+                { pa: 9000, temps: [{t:-20,d:2900,m:false},{t:-10,d:3200,m:false},{t:0,d:3450,m:false},{t:10,d:3830,m:false},{t:20,d:4220,m:false},{t:30,d:4670,m:false},{t:40,d:5180,m:false}]},
+                { pa: 10000,temps: [{t:-20,d:3090,m:false},{t:-10,d:3390,m:false},{t:0,d:3710,m:false},{t:10,d:4100,m:false},{t:20,d:4520,m:false},{t:30,d:5000,m:false},{t:40,d:5480,m:false}]}
             ]},
             { weight: 5200, altitudes: [
-                { pa: 0, temps: [{t:-20,d:1360,d:1480,m:false},{t:0,d:1610,m:false},{t:10,d:1750,m:false},{t:20,d:1910,m:false},{t:30,d:2100,m:false},{t:40,d:2310,m:false}]},
-                { pa: 1000, temps: [{t:-20,d:1430,d:1550,m:false},{t:0,d:1690,m:false},{t:10,d:1840,m:false},{t:20,d:2010,m:false},{t:30,d:2200,m:false},{t:40,d:2440,m:false}]},
-                { pa: 2000, temps: [{t:-20,d:1500,d:1620,m:false},{t:0,d:1780,m:false},{t:10,d:1940,m:false},{t:20,d:2110,m:false},{t:30,d:2310,m:false},{t:40,d:2560,m:false}]},
-                { pa: 3000, temps: [{t:-20,d:1570,d:1710,m:false},{t:0,d:1870,m:false},{t:10,d:2040,m:false},{t:20,d:2240,m:false},{t:30,d:2440,m:false},{t:40,d:2720,m:false}]},
-                { pa: 4000, temps: [{t:-20,d:1660,d:1800,m:false},{t:0,d:1970,m:false},{t:10,d:2150,m:false},{t:20,d:2360,m:false},{t:30,d:2580,m:false},{t:40,d:2860,m:false}]},
-                { pa: 5000, temps: [{t:-20,d:1740,d:1900,m:false},{t:0,d:2070,m:false},{t:10,d:2270,m:false},{t:20,d:2490,m:false},{t:30,d:2720,m:false},{t:40,d:3010,m:false}]},
-                { pa: 6000, temps: [{t:-20,d:1830,d:2000,m:false},{t:0,d:2190,m:false},{t:10,d:2400,m:false},{t:20,d:2640,m:false},{t:30,d:2880,m:false},{t:40,d:3180,m:false}]},
-                { pa: 7000, temps: [{t:-20,d:1940,d:2120,m:false},{t:0,d:2310,m:false},{t:10,d:2540,m:false},{t:20,d:2780,m:false},{t:30,d:3050,m:false},{t:40,d:3380,m:false}]},
-                { pa: 8000, temps: [{t:-20,d:2040,d:2240,m:false},{t:0,d:2450,m:false},{t:10,d:2720,m:false},{t:20,d:2960,m:false},{t:30,d:3250,m:false},{t:40,d:3600,m:false}]},
-                { pa: 9000, temps: [{t:-20,d:2160,d:2360,m:false},{t:0,d:2600,m:false},{t:10,d:2870,m:false},{t:20,d:3140,m:false},{t:30,d:3440,m:false},{t:40,d:3820,m:false}]},
-                { pa: 10000,temps: [{t:-20,d:2300,d:2520,m:false},{t:0,d:2770,m:false},{t:10,d:3050,m:false},{t:20,d:3380,m:false},{t:30,d:3700,m:false},{t:40,d:4100,m:false}]}
+                { pa: 0, temps: [{t:-20,d:1360,m:false},{t:-10,d:1480,m:false},{t:0,d:1610,m:false},{t:10,d:1750,m:false},{t:20,d:1910,m:false},{t:30,d:2100,m:false},{t:40,d:2310,m:false}]},
+                { pa: 1000, temps: [{t:-20,d:1430,m:false},{t:-10,d:1550,m:false},{t:0,d:1690,m:false},{t:10,d:1840,m:false},{t:20,d:2010,m:false},{t:30,d:2200,m:false},{t:40,d:2440,m:false}]},
+                { pa: 2000, temps: [{t:-20,d:1500,m:false},{t:-10,d:1620,m:false},{t:0,d:1780,m:false},{t:10,d:1940,m:false},{t:20,d:2110,m:false},{t:30,d:2310,m:false},{t:40,d:2560,m:false}]},
+                { pa: 3000, temps: [{t:-20,d:1570,m:false},{t:-10,d:1710,m:false},{t:0,d:1870,m:false},{t:10,d:2040,m:false},{t:20,d:2240,m:false},{t:30,d:2440,m:false},{t:40,d:2720,m:false}]},
+                { pa: 4000, temps: [{t:-20,d:1660,m:false},{t:-10,d:1800,m:false},{t:0,d:1970,m:false},{t:10,d:2150,m:false},{t:20,d:2360,m:false},{t:30,d:2580,m:false},{t:40,d:2860,m:false}]},
+                { pa: 5000, temps: [{t:-20,d:1740,m:false},{t:-10,d:1900,m:false},{t:0,d:2070,m:false},{t:10,d:2270,m:false},{t:20,d:2490,m:false},{t:30,d:2720,m:false},{t:40,d:3010,m:false}]},
+                { pa: 6000, temps: [{t:-20,d:1830,m:false},{t:-10,d:2000,m:false},{t:0,d:2190,m:false},{t:10,d:2400,m:false},{t:20,d:2640,m:false},{t:30,d:2880,m:false},{t:40,d:3180,m:false}]},
+                { pa: 7000, temps: [{t:-20,d:1940,m:false},{t:-10,d:2120,m:false},{t:0,d:2310,m:false},{t:10,d:2540,m:false},{t:20,d:2780,m:false},{t:30,d:3050,m:false},{t:40,d:3380,m:false}]},
+                { pa: 8000, temps: [{t:-20,d:2040,m:false},{t:-10,d:2240,m:false},{t:0,d:2450,m:false},{t:10,d:2720,m:false},{t:20,d:2960,m:false},{t:30,d:3250,m:false},{t:40,d:3600,m:false}]},
+                { pa: 9000, temps: [{t:-20,d:2160,m:false},{t:-10,d:2360,m:false},{t:0,d:2600,m:false},{t:10,d:2870,m:false},{t:20,d:3140,m:false},{t:30,d:3440,m:false},{t:40,d:3820,m:false}]},
+                { pa: 10000,temps: [{t:-20,d:2300,m:false},{t:-10,d:2520,m:false},{t:0,d:2770,m:false},{t:10,d:3050,m:false},{t:20,d:3380,m:false},{t:30,d:3700,m:false},{t:40,d:4100,m:false}]}
             ]}
         ]
     },
@@ -246,11 +242,12 @@ const C414ACalculator = {
                 if (point[xProp] <= x) p1 = point;
                 if (point[xProp] >= x && !p2) p2 = point;
             }
+            if (!p1 && !p2) return yProps.reduce((acc, prop) => ({ ...acc, [prop]: NaN }), {});
             if (!p1) return yProps.reduce((acc, prop) => ({ ...acc, [prop]: p2[prop] }), {});
             if (!p2) return yProps.reduce((acc, prop) => ({ ...acc, [prop]: p1[prop] }), {});
             if (p1[xProp] === p2[xProp]) return yProps.reduce((acc, prop) => ({ ...acc, [prop]: p1[prop] }), {});
 
-            const factor = (x - p1[xProp]) / (p2[xProp] - p1[xProp]);
+            const factor = (p2[xProp] - p1[xProp]) === 0 ? 0 : (x - p1[xProp]) / (p2[xProp] - p1[xProp]);
             const result = {};
             yProps.forEach(prop => {
                 if (typeof p1[prop] === 'boolean') {
@@ -268,6 +265,7 @@ const C414ACalculator = {
                 if (row[yProp] <= y_val) row1 = row;
                 if (row[yProp] >= y_val && !row2) row2 = row;
             }
+            if (!row1 && !row2) return valueProps.reduce((acc, prop) => ({ ...acc, [prop]: NaN }), {});
             if (!row1) return this.interpolate1D(x_val, row2.temps, xProp, valueProps);
             if (!row2) return this.interpolate1D(x_val, row1.temps, xProp, valueProps);
             if (row1[yProp] === row2[yProp]) return this.interpolate1D(x_val, row1.temps, xProp, valueProps);
@@ -275,12 +273,16 @@ const C414ACalculator = {
             const res1 = this.interpolate1D(x_val, row1.temps, xProp, valueProps);
             const res2 = this.interpolate1D(x_val, row2.temps, xProp, valueProps);
             
-            const factor = (y_val - row1[yProp]) / (row2[yProp] - row1[yProp]);
+            const factor = (row2[yProp] - row1[yProp]) === 0 ? 0 : (y_val - row1[yProp]) / (row2[yProp] - row1[yProp]);
             const finalResult = {};
             valueProps.forEach(prop => {
                  if (typeof res1[prop] === 'boolean') {
                     finalResult[prop] = factor > 0.5 ? res2[prop] : res1[prop];
                 } else {
+                    if(isNaN(res1[prop]) || isNaN(res2[prop])) {
+                        finalResult[prop] = NaN;
+                        return;
+                    }
                     finalResult[prop] = res1[prop] + factor * (res2[prop] - res1[prop]);
                 }
             });
@@ -293,6 +295,7 @@ const C414ACalculator = {
                 if (z_item[zProp] <= z_val) z1_data = z_item;
                 if (z_item[zProp] >= z_val && !z2_data) z2_data = z_item;
             }
+            if (!z1_data && !z2_data) return valueProps.reduce((acc, prop) => ({ ...acc, [prop]: NaN }), {});
             if (!z1_data) return this.interpolate2D(x_val, y_val, z2_data.altitudes, xProp, yProp, valueProps);
             if (!z2_data) return this.interpolate2D(x_val, y_val, z1_data.altitudes, xProp, yProp, valueProps);
             if (z1_data[zProp] === z2_data[zProp]) return this.interpolate2D(x_val, y_val, z1_data.altitudes, xProp, yProp, valueProps);
@@ -300,12 +303,16 @@ const C414ACalculator = {
             const res1 = this.interpolate2D(x_val, y_val, z1_data.altitudes, xProp, yProp, valueProps);
             const res2 = this.interpolate2D(x_val, y_val, z2_data.altitudes, xProp, yProp, valueProps);
 
-            const factor = (z_val - z1_data[zProp]) / (z2_data[zProp] - z1_data[zProp]);
+            const factor = (z2_data[zProp] - z1_data[zProp]) === 0 ? 0 : (z_val - z1_data[zProp]) / (z2_data[zProp] - z1_data[zProp]);
             const finalResult = {};
             valueProps.forEach(prop => {
                  if (typeof res1[prop] === 'boolean') {
                     finalResult[prop] = factor > 0.5 ? res2[prop] : res1[prop];
                 } else {
+                     if(isNaN(res1[prop]) || isNaN(res2[prop])) {
+                        finalResult[prop] = NaN;
+                        return;
+                    }
                     finalResult[prop] = res1[prop] + factor * (res2[prop] - res1[prop]);
                 }
             });
@@ -313,142 +320,221 @@ const C414ACalculator = {
         }
     },
     
-    module1: { /* All of Module 1's functions are assumed here */ },
+    // =============================================================================
+    // MODULE 1: FUNCTION IMPLEMENTATION
+    // =============================================================================
+    module1: {
+        getPressureAltitude(fieldElevation, altimeterSetting) {
+            if (isNaN(fieldElevation) || isNaN(altimeterSetting)) return NaN;
+            return fieldElevation - ((altimeterSetting - 29.92) / 0.1 * 100);
+        },
+        getKCAS(kias, config, source) {
+            if (isNaN(kias) || !config || !source) return NaN;
+            const table = C414ACalculator.data.airspeedCalibration[source][config];
+            const result = C414ACalculator.utils.interpolate1D(kias, table, 'kias', ['kcas']);
+            return result.kcas;
+        },
+        getAltimeterCorrection(kias, pa, config, source) {
+            const sourceData = C414ACalculator.data.altimeterCorrection[source];
+            return C414ACalculator.utils.interpolate2D(kias, pa, 
+                [
+                    { pa: 0, temps: sourceData.seaLevel[config] },
+                    { pa: 10000, temps: sourceData.tenThousand[config] },
+                    { pa: 20000, temps: sourceData.twentyThousand[config] }
+                ],
+                'kias', 'pa', ['corr']
+            ).corr;
+        },
+        getRamRise(kias, pa) {
+            if (isNaN(kias) || isNaN(pa)) return NaN;
+            return C414ACalculator.utils.interpolate2D(kias, pa, C414ACalculator.data.ramRise, 'kias', 'pa', ['rise']).rise;
+        },
+        getTrueOAT(indicatedOAT, ramRise){
+            if (isNaN(indicatedOAT) || isNaN(ramRise)) return NaN;
+            return indicatedOAT - ramRise;
+        },
+        getWindComponents(runwayHdg, windDir, windSpeed) {
+            if (isNaN(runwayHdg) || isNaN(windDir) || isNaN(windSpeed)) return { headwind: NaN, crosswind: NaN };
+            let angleDiff = windDir - runwayHdg;
+            if (angleDiff > 180) angleDiff -= 360;
+            if (angleDiff < -180) angleDiff += 360;
+            const angleInRadians = angleDiff * (Math.PI / 180);
+            return {
+                headwind: windSpeed * Math.cos(angleInRadians),
+                crosswind: windSpeed * Math.sin(angleInRadians)
+            };
+        }
+    },
 
+    // =============================================================================
+    // MODULE 2: FUNCTION IMPLEMENTATION
+    // =============================================================================
     module2: {
         calculateNormalTakeoff(weight, pa, temp, windComponent) {
             const base = C414ACalculator.utils.interpolate3D(temp, pa, weight, C414ACalculator.data.normalTakeoff, 't', 'pa', 'weight', ['gr', 'd50']);
             if(isNaN(base.gr)) return { groundRoll: NaN, distance50ft: NaN };
-            
             let { gr: groundRoll, d50: distance50ft } = base;
-
-            if (windComponent >= 0) { // Headwind
+            if (windComponent >= 0) {
                 const correctionFactor = (windComponent / 10) * 0.07;
                 groundRoll *= (1 - correctionFactor);
                 distance50ft *= (1 - correctionFactor);
-            } else { // Tailwind
+            } else {
                 const tailwind = Math.abs(windComponent);
-                if (tailwind > 0) {
-                    const correctionFactor = (tailwind / 2) * 0.05;
-                    groundRoll *= (1 + correctionFactor);
-                    distance50ft *= (1 + correctionFactor);
-                }
+                if (tailwind > 0) { const correctionFactor = (tailwind / 2) * 0.05; groundRoll *= (1 + correctionFactor); distance50ft *= (1 + correctionFactor); }
             }
             return { groundRoll, distance50ft };
         },
         calculateAccelStop(weight, pa, temp, windComponent) {
             const base = C414ACalculator.utils.interpolate3D(temp, pa, weight, C414ACalculator.data.accelStop, 't', 'pa', 'weight', ['d']);
             if(isNaN(base.d)) return { distance: NaN };
-            
             let distance = base.d;
-
-            if (windComponent >= 0) { // Headwind
+            if (windComponent >= 0) {
                 const correctionFactor = (windComponent / 4) * 0.03;
                 distance *= (1 - correctionFactor);
-            } else { // Tailwind
+            } else {
                 const tailwind = Math.abs(windComponent);
-                 if (tailwind > 0) {
-                    const correctionFactor = (tailwind / 2) * 0.05;
-                    distance *= (1 + correctionFactor);
-                }
+                if (tailwind > 0) { const correctionFactor = (tailwind / 2) * 0.05; distance *= (1 + correctionFactor); }
             }
             return { distance };
         },
         calculateAccelGo(weight, pa, temp, windComponent) {
             const base = C414ACalculator.utils.interpolate3D(temp, pa, weight, C414ACalculator.data.accelGo, 't', 'pa', 'weight', ['d', 'm']);
             if(isNaN(base.d)) return { distance: NaN, isMarginal: false };
-
             let { d: distance, m: isMarginal } = base;
-            
-            if (windComponent >= 0) { // Headwind
+            if (windComponent >= 0) {
                 const correctionFactor = (windComponent / 10) * 0.06;
                 distance *= (1 - correctionFactor);
-            } else { // Tailwind
+            } else {
                 const tailwind = Math.abs(windComponent);
-                 if (tailwind > 0) {
-                    const correctionFactor = tailwind * 0.02;
-                    distance *= (1 + correctionFactor);
-                }
+                if (tailwind > 0) { const correctionFactor = tailwind * 0.02; distance *= (1 + correctionFactor); }
             }
             return { distance, isMarginal };
         }
     },
 
+    // =============================================================================
+    // UI INTERACTIVITY
+    // =============================================================================
     init() {
+        const tabsNav = document.querySelector('.module-nav');
+        const tabPanes = document.querySelectorAll('.module-pane');
+        tabsNav.addEventListener('click', (event) => {
+            const navLink = event.target.closest('.nav-button');
+            if (navLink && !navLink.disabled) {
+                event.preventDefault();
+                const targetPaneId = navLink.getAttribute('data-tab');
+                tabsNav.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                navLink.classList.add('active');
+                tabPanes.forEach(pane => {
+                    pane.classList.remove('active');
+                    if (pane.id === targetPaneId) {
+                        pane.classList.add('active');
+                    }
+                });
+            }
+        });
+
         document.querySelectorAll('button[data-calc]').forEach(button => {
             button.addEventListener('click', (event) => {
                 const calcType = event.target.getAttribute('data-calc');
-                this.runCalculation(calcType);
+                this.runCalculation(calcType, event.target.closest('.calculator-card'));
             });
         });
     },
-
-    getCommonInputs() {
-        const weight = parseFloat(document.getElementById('aircraft-weight').value);
-        const oat = parseFloat(document.getElementById('oat').value);
-        const fieldElevation = parseFloat(document.getElementById('field-elevation').value);
-        const altimeterSetting = parseFloat(document.getElementById('altimeter-setting').value);
-        const runwayHdg = parseFloat(document.getElementById('runway-hdg').value);
-        const windDir = parseFloat(document.getElementById('wind-dir').value);
-        const windSpeed = parseFloat(document.getElementById('wind-speed').value);
-        
-        // Re-integrating Module 1 functions for standalone completeness
-        const pressureAltitude = C414ACalculator.module1.getPressureAltitude(fieldElevation, altimeterSetting);
-        const windComponents = C414ACalculator.module1.getWindComponents(runwayHdg, windDir, windSpeed);
-
-        return { weight, oat, pressureAltitude, windComponent: windComponents.headwind };
-    },
     
-    runCalculation(calcType) {
-        const inputs = this.getCommonInputs();
-        // Basic validation
-        if(isNaN(inputs.weight) || isNaN(inputs.oat) || isNaN(inputs.pressureAltitude) || isNaN(inputs.windComponent)) {
-            alert("Por favor, preencha todos os campos de 'Condições de Voo' com valores numéricos.");
-            return;
-        }
-
-
-        switch(calcType) {
-            case 'normal-takeoff': {
-                const result = this.module2.calculateNormalTakeoff(inputs.weight, inputs.pressureAltitude, inputs.oat, inputs.windComponent);
-                document.getElementById('normal-takeoff-ground-roll-result').textContent = isNaN(result.groundRoll) ? "Fora do envelope" : result.groundRoll.toFixed(0);
-                document.getElementById('normal-takeoff-50ft-result').textContent = isNaN(result.distance50ft) ? "Fora do envelope" : result.distance50ft.toFixed(0);
-                break;
+    runCalculation(calcType, cardElement) {
+        try {
+            switch(calcType) {
+                case 'pressure-altitude': {
+                    const elev = parseFloat(cardElement.querySelector('#m1-fieldelevation').value);
+                    const setting = parseFloat(cardElement.querySelector('#m1-altsetting').value);
+                    if(isNaN(elev) || isNaN(setting)) return;
+                    const result = this.module1.getPressureAltitude(elev, setting);
+                    cardElement.querySelector('#pressure-altitude-result').textContent = `${result.toFixed(0)} feet`;
+                    break;
+                }
+                case 'airspeed-cal': {
+                    const kias = parseFloat(cardElement.querySelector('#m1-kias-cal').value);
+                    const config = cardElement.querySelector('#m1-config-cal').value;
+                    const source = cardElement.querySelector('#m1-staticsource-cal').value;
+                    if(isNaN(kias)) return;
+                    const result = this.module1.getKCAS(kias, config, source);
+                    cardElement.querySelector('#airspeed-cal-result').textContent = `${result.toFixed(1)} KCAS`;
+                    break;
+                }
+                 case 'altimeter-corr': {
+                    const kias = parseFloat(cardElement.querySelector('#m1-kias-alt').value);
+                    const pa = parseFloat(cardElement.querySelector('#m1-pa-alt').value);
+                    const config = cardElement.querySelector('#m1-config-alt').value;
+                    const source = cardElement.querySelector('#m1-staticsource-alt').value;
+                    if(isNaN(kias) || isNaN(pa)) return;
+                    const correction = this.module1.getAltimeterCorrection(kias, pa, config, source);
+                    cardElement.querySelector('#altimeter-corr-result').textContent = `${correction >= 0 ? '+' : ''}${correction.toFixed(0)} feet`;
+                    break;
+                }
+                case 'ram-rise': {
+                     const kias = parseFloat(cardElement.querySelector('#m1-kias-temp').value);
+                     const pa = parseFloat(cardElement.querySelector('#m1-pa-temp').value);
+                     const indicatedOAT = parseFloat(cardElement.querySelector('#m1-indicated-oat').value);
+                     if(isNaN(kias) || isNaN(pa) || isNaN(indicatedOAT)) return;
+                     const ramRise = this.module1.getRamRise(kias, pa);
+                     const trueOAT = this.module1.getTrueOAT(indicatedOAT, ramRise);
+                     cardElement.querySelector('#ram-rise-result').textContent = `${ramRise.toFixed(1)} °C`;
+                     cardElement.querySelector('#true-oat-result').textContent = `${trueOAT.toFixed(1)} °C`;
+                     break;
+                }
+                case 'wind-comp': {
+                    const runway = parseFloat(cardElement.querySelector('#m1-runway-hdg').value);
+                    const dir = parseFloat(cardElement.querySelector('#m1-wind-dir').value);
+                    const speed = parseFloat(cardElement.querySelector('#m1-wind-speed').value);
+                    if(isNaN(runway) || isNaN(dir) || isNaN(speed)) return;
+                    const result = this.module1.getWindComponents(runway, dir, speed);
+                    const headwindText = `${result.headwind >= 0 ? 'Headwind' : 'Tailwind'}: ${Math.abs(result.headwind).toFixed(1)} kts`;
+                    const crosswindText = `${Math.abs(result.crosswind).toFixed(1)} kts (from ${result.crosswind >= 0 ? 'Right' : 'Left'})`;
+                    cardElement.querySelector('#headwind-result').textContent = headwindText;
+                    cardElement.querySelector('#crosswind-result').textContent = crosswindText;
+                    break;
+                }
+                case 'normal-takeoff': {
+                    const weight = parseFloat(cardElement.querySelector('#m2-normal-weight').value);
+                    const pa = parseFloat(cardElement.querySelector('#m2-normal-pa').value);
+                    const temp = parseFloat(cardElement.querySelector('#m2-normal-temp').value);
+                    const wind = parseFloat(cardElement.querySelector('#m2-normal-wind').value) || 0;
+                    if(isNaN(weight) || isNaN(pa) || isNaN(temp)) return;
+                    const result = this.module2.calculateNormalTakeoff(weight, pa, temp, wind);
+                    cardElement.querySelector('#normal-takeoff-ground-roll-result').textContent = isNaN(result.groundRoll) ? "Out of Envelope" : `${result.groundRoll.toFixed(0)} feet`;
+                    cardElement.querySelector('#normal-takeoff-50ft-result').textContent = isNaN(result.distance50ft) ? "Out of Envelope" : `${result.distance50ft.toFixed(0)} feet`;
+                    break;
+                }
+                case 'accel-stop': {
+                    const weight = parseFloat(cardElement.querySelector('#m2-accelstop-weight').value);
+                    const pa = parseFloat(cardElement.querySelector('#m2-accelstop-pa').value);
+                    const temp = parseFloat(cardElement.querySelector('#m2-accelstop-temp').value);
+                    const wind = parseFloat(cardElement.querySelector('#m2-accelstop-wind').value) || 0;
+                    if(isNaN(weight) || isNaN(pa) || isNaN(temp)) return;
+                    const result = this.module2.calculateAccelStop(weight, pa, temp, wind);
+                    cardElement.querySelector('#accel-stop-result').textContent = isNaN(result.distance) ? "Out of Envelope" : `${result.distance.toFixed(0)} feet`;
+                    break;
+                }
+                case 'accel-go': {
+                    const weight = parseFloat(cardElement.querySelector('#m2-accelgo-weight').value);
+                    const pa = parseFloat(cardElement.querySelector('#m2-accelgo-pa').value);
+                    const temp = parseFloat(cardElement.querySelector('#m2-accelgo-temp').value);
+                    const wind = parseFloat(cardElement.querySelector('#m2-accelgo-wind').value) || 0;
+                    if(isNaN(weight) || isNaN(pa) || isNaN(temp)) return;
+                    const result = this.module2.calculateAccelGo(weight, pa, temp, wind);
+                    cardElement.querySelector('#accel-go-result').textContent = isNaN(result.distance) ? "Out of Envelope" : `${result.distance.toFixed(0)} feet`;
+                    const warningEl = cardElement.querySelector('#accel-go-warning');
+                    warningEl.textContent = result.isMarginal ? "WARNING: Marginal climb performance (<50 ft/min)." : "";
+                    break;
+                }
             }
-            case 'accel-stop': {
-                 const result = this.module2.calculateAccelStop(inputs.weight, inputs.pressureAltitude, inputs.oat, inputs.windComponent);
-                 document.getElementById('accel-stop-result').textContent = isNaN(result.distance) ? "Fora do envelope" : result.distance.toFixed(0);
-                break;
-            }
-            case 'accel-go': {
-                 const result = this.module2.calculateAccelGo(inputs.weight, inputs.pressureAltitude, inputs.oat, inputs.windComponent);
-                 document.getElementById('accel-go-result').textContent = isNaN(result.distance) ? "Fora do envelope" : result.distance.toFixed(0);
-                 const warningEl = document.getElementById('accel-go-warning');
-                 warningEl.textContent = result.isMarginal ? "WARNING: Marginal climb performance (<50 ft/min)." : "";
-                break;
-            }
+        } catch (e) {
+            console.error(`Error during calculation for ${calcType}:`, e);
+            alert("An error occurred. Check input values and try again.");
         }
     }
 };
-
-// Re-populating Module 1 functions for standalone file completeness
-C414ACalculator.module1.getPressureAltitude = function(fieldElevation, altimeterSetting) {
-    if (isNaN(fieldElevation) || isNaN(altimeterSetting)) return NaN;
-    const pressureDiff = altimeterSetting - 29.92;
-    const correction = (pressureDiff / 0.1) * 100;
-    return fieldElevation - correction;
-};
-C414ACalculator.module1.getWindComponents = function(runwayHdg, windDir, windSpeed) {
-    if (isNaN(runwayHdg) || isNaN(windDir) || isNaN(windSpeed)) return { headwind: NaN, crosswind: NaN };
-    let angleDiff = windDir - runwayHdg;
-    if (angleDiff > 180) angleDiff -= 360;
-    if (angleDiff < -180) angleDiff += 360;
-    const angleInRadians = angleDiff * (Math.PI / 180);
-    const headwind = windSpeed * Math.cos(angleInRadians);
-    const crosswind = windSpeed * Math.sin(angleInRadians);
-    return { headwind, crosswind };
-};
-
 
 document.addEventListener('DOMContentLoaded', () => {
     C414ACalculator.init();
