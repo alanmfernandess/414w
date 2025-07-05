@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cessna 414A - Calculadora de Performance - Módulo 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora de Performance - Cessna 414A</h1>
+        <h2>Módulo 1: Utilitários e Correções</h2>
+    </header>
+
+    <main>
+        <section id="pressure-altitude-calc" class="calculator-card">
+            <h3>1. Altitude Pressão</h3>
+            <div class="input-group">
+                <label for="field-elevation">Elevação do Aeródromo (pés)</label>
+                <input type="number" id="field-elevation" placeholder="Ex: 5000">
+            </div>
+            <div class="input-group">
+                <label for="altimeter-setting">Ajuste de Altímetro (inHg)</label>
+                <input type="number" id="altimeter-setting" step="0.01" placeholder="Ex: 29.42">
+            </div>
+            <button data-calc="pressure-altitude">Calcular</button>
+            <p class="result">Altitude Pressão: <span id="pressure-altitude-result">---</span> pés</p>
+        </section>
+
+        <section id="airspeed-cal-calc" class="calculator-card">
+            <h3>2. Calibração de Velocidade (KIAS para KCAS)</h3>
+            <div class="input-group">
+                <label for="kias-cal">Velocidade Indicada (KIAS)</label>
+                <input type="number" id="kias-cal" placeholder="Ex: 150">
+            </div>
+            <div class="input-group">
+                <label for="config-cal">Configuração</label>
+                <select id="config-cal">
+                    <option value="clean">Trem Em Cima / Flaps 0°</option>
+                    <option value="approach">Trem Em Baixo / Flaps 15°</option>
+                    <option value="landing">Trem Em Baixo / Flaps 45°</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="static-source-cal">Fonte Estática</label>
+                <select id="static-source-cal">
+                    <option value="normal">Normal</option>
+                    <option value="alternate">Alternada</option>
+                </select>
+            </div>
+            <button data-calc="airspeed-cal">Calcular</button>
+            <p class="result">Velocidade Calibrada: <span id="airspeed-cal-result">---</span> KCAS</p>
+        </section>
+
+        <section id="altimeter-corr-calc" class="calculator-card">
+            <h3>3. Correção de Altímetro</h3>
+            <div class="input-group">
+                <label for="kias-alt">Velocidade Indicada (KIAS)</label>
+                <input type="number" id="kias-alt" placeholder="Ex: 200">
+            </div>
+            <div class="input-group">
+                <label for="pa-alt">Altitude Pressão (pés)</label>
+                <input type="number" id="pa-alt" placeholder="Ex: 10000">
+            </div>
+            <div class="input-group">
+                <label for="config-alt">Configuração</label>
+                <select id="config-alt">
+                    <option value="clean">Trem Em Cima / Flaps 0°</option>
+                    <option value="approach">Trem Em Baixo / Flaps 15°</option>
+                    <option value="landing">Trem Em Baixo / Flaps 45°</option>
+                </select>
+            </div>
+             <div class="input-group">
+                <label for="static-source-alt">Fonte Estática</label>
+                <select id="static-source-alt">
+                    <option value="normal">Normal</option>
+                    <option value="alternate">Alternada</option>
+                </select>
+            </div>
+            <button data-calc="altimeter-corr">Calcular</button>
+            <p class="result">Correção: <span id="altimeter-corr-result">---</span> pés</p>
+            <p class="result">Altitude Indicada a Voar (para PA desejada): <span id="indicated-alt-to-fly-result">---</span> pés</p>
+        </section>
+        
+        <section id="ram-rise-calc" class="calculator-card">
+            <h3>4. Correção de Temperatura (Ram Rise)</h3>
+            <div class="input-group">
+                <label for="kias-temp">Velocidade Indicada (KIAS)</label>
+                <input type="number" id="kias-temp" placeholder="Ex: 160">
+            </div>
+            <div class="input-group">
+                <label for="pa-temp">Altitude Pressão (pés)</label>
+                <input type="number" id="pa-temp" placeholder="Ex: 20000">
+            </div>
+             <div class="input-group">
+                <label for="indicated-oat">Temp. Externa Indicada (°C)</label>
+                <input type="number" id="indicated-oat" placeholder="Ex: -20">
+            </div>
+            <button data-calc="ram-rise">Calcular</button>
+            <p class="result">Aumento de Temperatura: <span id="ram-rise-result">---</span> °C</p>
+            <p class="result">Temperatura Externa Verdadeira: <span id="true-oat-result">---</span> °C</p>
+        </section>
+
+        <section id="wind-comp-calc" class="calculator-card">
+            <h3>5. Componentes de Vento</h3>
+            <div class="input-group">
+                <label for="runway-hdg">Proa da Pista (graus)</label>
+                <input type="number" id="runway-hdg" placeholder="Ex: 230">
+            </div>
+            <div class="input-group">
+                <label for="wind-dir">Direção do Vento (graus)</label>
+                <input type="number" id="wind-dir" placeholder="Ex: 270">
+            </div>
+            <div class="input-group">
+                <label for="wind-speed">Velocidade do Vento (nós)</label>
+                <input type="number" id="wind-speed" placeholder="Ex: 25">
+            </div>
+            <button data-calc="wind-comp">Calcular</button>
+            <p class="result">Vento de Proa/Cauda: <span id="headwind-result">---</span> nós</p>
+            <p class="result">Vento de Través: <span id="crosswind-result">---</span> nós</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Cessna 414A Performance Calculator | Projeto de Alan e Gemini</p>
+    </footer>
+
+</body>
+</html>
