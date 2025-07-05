@@ -1,11 +1,12 @@
-/* Reset Básico e Definições Globais */
+/* Reset Básico e Definições Globais (Do Módulo 1) */
 :root {
-    --primary-color: #0d47a1; /* Azul escuro para botões e header */
-    --secondary-color: #f4f4f9; /* Fundo cinza claro */
-    --font-color: #333; /* Cor do texto principal */
+    --primary-color: #0d47a1; 
+    --secondary-color: #f4f4f9; 
+    --font-color: #333; 
     --border-color: #ddd;
     --card-bg-color: #fff;
     --result-color: #0d47a1;
+    --warning-color: #c62828;
 }
 
 body {
@@ -17,7 +18,6 @@ body {
     line-height: 1.6;
 }
 
-/* Header e Footer */
 header, footer {
     background-color: var(--primary-color);
     color: white;
@@ -25,32 +25,48 @@ header, footer {
     padding: 1.5rem;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header h2 {
-    margin: 0;
-    font-weight: 300;
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-footer {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-}
+header h1 { margin: 0; font-size: 2rem; }
+header h2 { margin: 0; font-weight: 300; font-size: 1.2rem; opacity: 0.9; }
+footer { margin-top: 2rem; font-size: 0.9rem; }
 
 /* Layout Principal */
 main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
     padding: 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
 }
+
+/* NOVO: Card de Condições */
+.conditions-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.conditions-card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* NOVO: Container dos Módulos */
+.module-container {
+     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
 
 /* Estilo dos Cards da Calculadora */
 .calculator-card {
@@ -65,15 +81,19 @@ main {
 
 .calculator-card h3 {
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--primary-color);
+}
+
+.calculator-card .description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
 }
 
 /* Grupo de Inputs */
 .input-group {
-    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -90,7 +110,7 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
-    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    box-sizing: border-box; 
 }
 
 /* Botões */
@@ -104,11 +124,10 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    margin-top: auto; /* Empurra o botão para o final do card */
 }
 
 button:hover {
-    background-color: #1565c0; /* Azul um pouco mais claro */
+    background-color: #1565c0;
 }
 
 /* Resultados */
@@ -123,4 +142,9 @@ button:hover {
 .result span {
     font-weight: 700;
     color: var(--result-color);
+}
+
+.result.warning span {
+    color: var(--warning-color);
+    font-weight: 600;
 }
