@@ -21,7 +21,7 @@
         <nav class="module-nav">
             <button class="nav-button active" data-tab="module1-tab">1. Utilities & Corrections</button>
             <button class="nav-button" data-tab="module2-tab">2. Takeoff Performance</button>
-            <button class="nav-button" data-tab="module3-tab" disabled>3. Climb Performance</button>
+            <button class="nav-button" data-tab="module3-tab">3. Climb Performance</button>
             <button class="nav-button" data-tab="module4-tab" disabled>4. Cruise Performance</button>
             <button class="nav-button" data-tab="module5-tab" disabled>5. Landing Performance</button>
             <button class="nav-button" data-tab="module6-tab" disabled>6. Limits & Contingencies</button>
@@ -110,11 +110,41 @@
                 </div>
             </div>
             
-            <div id="module3-tab" class="module-pane"><p class="placeholder-title">Módulo 3: Climb Performance (Em desenvolvimento)</p></div>
-            <div id="module4-tab" class="module-pane"><p class="placeholder-title">Módulo 4: Cruise Performance (Em desenvolvimento)</p></div>
-            <div id="module5-tab" class="module-pane"><p class="placeholder-title">Módulo 5: Landing Performance (Em desenvolvimento)</p></div>
-            <div id="module6-tab" class="module-pane"><p class="placeholder-title">Módulo 6: Limits & Contingencies (Em desenvolvimento)</p></div>
-            <div id="module7-tab" class="module-pane"><p class="placeholder-title">Módulo 7: Full Flight Plan (Em desenvolvimento)</p></div>
+            <div id="module3-tab" class="module-pane">
+                <div class="card-grid">
+                    <section class="calculator-card" id="roc-card">
+                        <h3>Rate of Climb</h3>
+                        <div class="input-group"><label for="m3-roc-profile">Climb Profile</label><select id="m3-roc-profile"><option value="maximum">Maximum Climb</option><option value="cruise">Cruise Climb</option><option value="singleEngine">One Engine Inoperative</option><option value="balked">Balked Landing</option></select></div>
+                        <div class="input-grid"><div class="input-group"><label for="m3-roc-weight">Weight (lbs)</label><input type="number" id="m3-roc-weight" placeholder="e.g., 6500"></div><div class="input-group"><label for="m3-roc-pa">Pressure Alt (ft)</label><input type="number" id="m3-roc-pa" placeholder="e.g., 8000"></div></div>
+                        <div class="input-group"><label for="m3-roc-temp">OAT (°C)</label><input type="number" id="m3-roc-temp" placeholder="e.g., 0"></div>
+                        <div id="m3-roc-se-options" class="sub-options hidden">
+                            <label class="sub-options-title">Single Engine Penalties:</label>
+                            <div class="checkbox-group"><input type="checkbox" id="m3-roc-se-windmilling"><label for="m3-roc-se-windmilling">Prop Windmilling (-400 fpm)</label></div>
+                            <div class="checkbox-group"><input type="checkbox" id="m3-roc-se-gear"><label for="m3-roc-se-gear">Gear Down (-350 fpm)</label></div>
+                            <div class="input-group"><label for="m3-roc-se-flaps">Flaps</label><select id="m3-roc-se-flaps"><option value="0">0° (0 fpm)</option><option value="15">-200 fpm</option><option value="45">-800 fpm</option></select></div>
+                        </div>
+                        <button data-calc="rate-of-climb">Calculate</button>
+                        <p class="result"><span>Rate of Climb</span> <strong id="roc-result">---</strong></p>
+                        <p class="result"><span>Climb Speed</span> <strong id="roc-speed-result">---</strong></p>
+                    </section>
+
+                    <section class="calculator-card" id="tfd-climb-card">
+                        <h3>Time, Fuel & Distance to Climb</h3>
+                        <div class="input-group"><label for="m3-tfd-profile">Climb Profile</label><select id="m3-tfd-profile"><option value="maximum">Maximum Climb</option><option value="cruise">Cruise Climb</option></select></div>
+                        <div class="input-grid"><div class="input-group"><label for="m3-tfd-weight">Weight (lbs)</label><input type="number" id="m3-tfd-weight" placeholder="e.g., 6500"></div><div class="input-group"><label for="m3-tfd-temp">OAT (°C)</label><input type="number" id="m3-tfd-temp" placeholder="ISA assumed if blank"></div></div>
+                        <div class="input-grid"><div class="input-group"><label for="m3-tfd-start-pa">Start Alt (ft)</label><input type="number" id="m3-tfd-start-pa" placeholder="e.g., 2400"></div><div class="input-group"><label for="m3-tfd-end-pa">End Alt (ft)</label><input type="number" id="m3-tfd-end-pa" placeholder="e.g., 17500"></div></div>
+                        <button data-calc="tfd-climb">Calculate</button>
+                        <p class="result"><span>Time to Climb</span> <strong id="tfd-time-result">---</strong></p>
+                        <p class="result"><span>Fuel to Climb (+32 lbs)</span> <strong id="tfd-fuel-result">---</strong></p>
+                        <p class="result"><span>Distance to Climb</span> <strong id="tfd-dist-result">---</strong></p>
+                    </section>
+                </div>
+            </div>
+            
+            <div id="module4-tab" class="module-pane"><p class="placeholder-title">Module 4: Cruise Performance (Em desenvolvimento)</p></div>
+            <div id="module5-tab" class="module-pane"><p class="placeholder-title">Module 5: Landing Performance (Em desenvolvimento)</p></div>
+            <div id="module6-tab" class="module-pane"><p class="placeholder-title">Module 6: Limits & Contingencies (Em desenvolvimento)</p></div>
+            <div id="module7-tab" class="module-pane"><p class="placeholder-title">Module 7: Full Flight Plan (Em desenvolvimento)</p></div>
         </main>
     </div>
 
